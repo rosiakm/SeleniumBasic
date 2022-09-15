@@ -13,7 +13,7 @@ public class FormTest extends TestBase {
 
     @Test
     @Tag("Form")
-    public void fillFormWithValidValuesTest(){
+    public void fillFormWithValidValuesTest() {
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
         new FormPage().fillFormWithSuccess();
@@ -29,7 +29,7 @@ public class FormTest extends TestBase {
 
     @Test
     @Tag("Form")
-    public void checkTheFileNameTest(){
+    public void checkTheFileNameTest() {
         new FormPage().checkTheFileName();
     }
 }

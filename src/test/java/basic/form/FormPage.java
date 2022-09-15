@@ -89,7 +89,7 @@ public class FormPage extends BasePage {
         assertThat(endNbrOfFiles).isEqualTo(startNbrOfFiles + 1);
     }
 
-    public void checkTheFileName(){
+    public void checkTheFileName() {
         File fileName = new File("C:\\Users\\matros\\IdeaProjects\\SeleniumBasic\\downloads\\test-file-to-download.xlsx");
         assertThat(getTheListOfFiles()).contains(fileName);
     }
