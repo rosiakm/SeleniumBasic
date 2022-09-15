@@ -18,7 +18,6 @@ import static base.TestBase.getDriver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FormPage extends BasePage {
-    File file = new File("src/main/resources/file.txt");
     private final DataFaker dataFaker = new DataFaker();
     private final Random random = new Random();
     private static final Logger log = LoggerFactory.getLogger(FormPage.class);
@@ -51,6 +50,8 @@ public class FormPage extends BasePage {
     private WebElement signInButton;
     @FindBy(css = "#validator-message")
     private WebElement validationMessage;
+
+    File file = new File("src/main/resources/file.txt");
 
     public FormPage(){
         super();
