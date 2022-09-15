@@ -1,7 +1,6 @@
 package basic.form;
 
 import base.BasePage;
-import base.TestBase;
 import helpers.DataFaker;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -15,6 +14,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Random;
 
+import static base.TestBase.getDriver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FormPage extends BasePage {
@@ -65,7 +65,7 @@ public class FormPage extends BasePage {
         experienceRadioButtons.get(random.nextInt(experienceRadioButtons.size())).click();
         automationTesterCheckbox.click();
         new Select(selectContinents).selectByIndex(random.nextInt(continentsOptions.size()));
-        new Actions(TestBase.getDriver()).keyDown(Keys.CONTROL).click(switchCommandsOption).
+        new Actions(getDriver()).keyDown(Keys.CONTROL).click(switchCommandsOption).
                 click(waitCommandsOption).build().perform();
         fileInput.sendKeys(file.getAbsolutePath());
         log.info("The form has been filled");
