@@ -22,6 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FormPage extends BasePage {
     private final DataFaker dataFaker = new DataFaker();
     private final Random random = new Random();
+    private File file = new File("src/main/resources/file.txt");
     private static final Logger log = LoggerFactory.getLogger(FormPage.class);
 
     @FindBy(css = "#inputFirstName3")
@@ -54,8 +55,6 @@ public class FormPage extends BasePage {
     private WebElement validationMessage;
     @FindBy(css = "a[class='btn btn-secondary btn-lg active']")
     private WebElement downloadButton;
-
-    File file = new File("src/main/resources/file.txt");
 
     public FormPage() {
         super();
