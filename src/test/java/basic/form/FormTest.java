@@ -19,4 +19,17 @@ public class FormTest extends TestBase {
         new FormPage().fillFormWithSuccess();
     }
 
+    @Test
+    @Tag("Form")
+    public void downloadFilesTest() throws InterruptedException {
+        getDriver().get(websiteAddress);
+        log.info("Website address is: " + websiteAddress);
+        new FormPage().downloadFileFromForm();
+    }
+
+    @Test
+    @Tag("Form")
+    public void checkTheFileNameTest(){
+        new FormPage().checkTheFileName();
+    }
 }

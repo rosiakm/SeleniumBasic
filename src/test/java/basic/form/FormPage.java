@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Random;
 
 import static base.TestBase.getDriver;
+import static helpers.FilesHandler.countTheFiles;
+import static helpers.FilesHandler.getTheListOfFiles;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FormPage extends BasePage {
@@ -50,19 +52,21 @@ public class FormPage extends BasePage {
     private WebElement signInButton;
     @FindBy(css = "#validator-message")
     private WebElement validationMessage;
+    @FindBy(css = "a[class='btn btn-secondary btn-lg active']")
+    private WebElement downloadButton;
 
     File file = new File("src/main/resources/file.txt");
 
-    public FormPage(){
+    public FormPage() {
         super();
     }
 
-    public void fillFormWithSuccess(){
+    public void fillFormWithSuccess() {
         firstNameInput.sendKeys(dataFaker.setFirstName());
         lastNameInput.sendKeys(dataFaker.setLastName());
         emailInput.sendKeys(dataFaker.setEmail());
         sexRadioButtons.get(random.nextInt(sexRadioButtons.size())).click();
-        ageInput.sendKeys(Integer.toString(random.nextInt(18,100)));
+        ageInput.sendKeys(Integer.toString(random.nextInt(18, 100)));
         experienceRadioButtons.get(random.nextInt(experienceRadioButtons.size())).click();
         automationTesterCheckbox.click();
         new Select(selectContinents).selectByIndex(random.nextInt(continentsOptions.size()));
@@ -74,5 +78,19 @@ public class FormPage extends BasePage {
         log.info("Sign in button has been clicked");
 
         assertThat(validationMessage.getText()).isEqualTo("Form send with success");
+    }
+
+    public void downloadFileFromForm() throws InterruptedException {
+        int startNbrOfFiles = countTheFiles();
+        log.info("Starting number of files: " + startNbrOfFiles);
+        downloadButton.click();
+        int endNbrOfFiles = countTheFiles();
+
+        assertThat(endNbrOfFiles).isEqualTo(startNbrOfFiles + 1);
+    }
+
+    public void checkTheFileName(){
+        File fileName = new File("C:\\Users\\matros\\IdeaProjects\\SeleniumBasic\\downloads\\test-file-to-download.xlsx");
+        assertThat(getTheListOfFiles()).contains(fileName);
     }
 }
