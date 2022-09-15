@@ -37,6 +37,7 @@ public class iFramesPage extends BasePage {
 
     public iFramesPage(){
         super();
+        log.info("Elements on the website are initialized");
     }
 
     public void fillAllFramesOnTheSite(){

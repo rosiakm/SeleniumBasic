@@ -32,6 +32,7 @@ public class AlertsPage extends BasePage {
 
     public AlertsPage() {
         super();
+        log.info("Elements on the website are initialized");
     }
 
     public void clickAndAcceptSimpleAlert() {
