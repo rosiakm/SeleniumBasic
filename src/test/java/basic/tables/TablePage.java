@@ -14,19 +14,36 @@ public class TablePage extends BasePage {
 
     @FindBy(css = "tbody tr")
     private List<WebElement> tableRows;
+    @FindBy(css = "thead th")
+    private List<WebElement> tableIndexes;
 
-    public TablePage(){
+    public TablePage() {
         super();
         log.info("Elements on the website are initialized");
     }
 
-    public void selectSpecificData(){
+    public void selectSpecificData() {
+        int rankIndex = getColumnIndexByName("Rank");
+        int peakIndex = getColumnIndexByName("Peak");
+        int mountainRangeIndex = getColumnIndexByName("Mountain range");
+        int stateIndex = getColumnIndexByName("State");
+        int heightIndex = getColumnIndexByName("Height");
+
         for (WebElement tempRow : tableRows) {
             List<WebElement> cells = tempRow.findElements(By.cssSelector("th, td"));
             log.info("List of cells within specific row has been built");
-            if (cells.get(3).getText().contains("Switzerland") && Integer.parseInt(cells.get(4).getText()) > 4000){
-                System.out.println(cells.get(0).getText() + " " + cells.get(1).getText() + " " + cells.get(2).getText());
+            if (cells.get(stateIndex).getText().contains("Switzerland") && Integer.parseInt(cells.get(heightIndex).getText()) > 4000) {
+                System.out.println(cells.get(rankIndex).getText() + " " + cells.get(peakIndex).getText() + " " + cells.get(mountainRangeIndex).getText());
             }
         }
+    }
+
+    public int getColumnIndexByName(String columnName) {
+        for (int i = 0; i < tableIndexes.size(); i++) {
+            if (tableIndexes.get(i).getText().equals(columnName)) {
+                return i - 1;
+            }
+        }
+        return -1;
     }
 }

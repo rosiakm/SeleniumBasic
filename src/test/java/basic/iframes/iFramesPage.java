@@ -1,6 +1,7 @@
 package basic.iframes;
 
 import base.BasePage;
+import helpers.DataFaker;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -13,6 +14,7 @@ import java.util.Random;
 import static base.TestBase.getDriver;
 
 public class iFramesPage extends BasePage {
+    private final DataFaker dataFaker = new DataFaker();
     private static Logger log = LoggerFactory.getLogger(iFramesPage.class);
     private final Random random = new Random();
 
@@ -43,8 +45,8 @@ public class iFramesPage extends BasePage {
     public void fillAllFramesOnTheSite(){
         getDriver().switchTo().frame(iFrameOne);
         log.info("Switched to iFrame nr 1");
-        firstNameInput.sendKeys("Mateusz");
-        surnameInput.sendKeys("Rosiak");
+        firstNameInput.sendKeys(dataFaker.setFirstName());
+        surnameInput.sendKeys(dataFaker.setLastName());
         log.info("Fields in iFrame nr 1 has been filled");
         getDriver().switchTo().defaultContent();
         log.info("Switch back to default content");
