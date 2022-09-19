@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 import static base.TestBase.getDriver;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class iFramesPage extends BasePage {
     private final DataFaker dataFaker = new DataFaker();
@@ -55,6 +56,7 @@ public class iFramesPage extends BasePage {
         loginInput.sendKeys("matros");
         passwordInput.sendKeys("12345");
         new Select(selectDropDownList).selectByValue("europe");
+        assertThat(radioButtons.size()).isGreaterThan(0);
         radioButtons.get(random.nextInt(7)).click();
         log.info("Fields and selects in iFrame nr 2 has been filled");
         getDriver().switchTo().defaultContent();

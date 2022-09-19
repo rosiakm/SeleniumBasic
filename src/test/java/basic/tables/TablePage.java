@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class TablePage extends BasePage {
     private static Logger log = LoggerFactory.getLogger(TablePage.class);
 
@@ -29,6 +31,7 @@ public class TablePage extends BasePage {
         int stateIndex = getColumnIndexByName("State");
         int heightIndex = getColumnIndexByName("Height");
 
+        assertThat(tableRows.size()).isGreaterThan(0);
         for (WebElement tempRow : tableRows) {
             List<WebElement> cells = tempRow.findElements(By.cssSelector("th, td"));
             log.info("List of cells within specific row has been built");
@@ -39,6 +42,7 @@ public class TablePage extends BasePage {
     }
 
     public int getColumnIndexByName(String columnName) {
+        assertThat(tableIndexes.size()).isGreaterThan(0);
         for (int i = 0; i < tableIndexes.size(); i++) {
             if (tableIndexes.get(i).getText().equals(columnName)) {
                 return i - 1;

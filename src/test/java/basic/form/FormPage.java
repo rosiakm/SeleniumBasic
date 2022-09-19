@@ -64,10 +64,13 @@ public class FormPage extends BasePage {
         firstNameInput.sendKeys(dataFaker.setFirstName());
         lastNameInput.sendKeys(dataFaker.setLastName());
         emailInput.sendKeys(dataFaker.setEmail());
+        assertThat(sexRadioButtons.size()).isGreaterThan(0);
         sexRadioButtons.get(random.nextInt(sexRadioButtons.size())).click();
         ageInput.sendKeys(Integer.toString(random.nextInt(18, 100)));
+        assertThat(experienceRadioButtons.size()).isGreaterThan(0);
         experienceRadioButtons.get(random.nextInt(experienceRadioButtons.size())).click();
         automationTesterCheckbox.click();
+        assertThat(continentsOptions.size()).isGreaterThan(0);
         new Select(selectContinents).selectByIndex(random.nextInt(continentsOptions.size()));
         new Actions(getDriver()).keyDown(Keys.CONTROL).click(switchCommandsOption).
                 click(waitCommandsOption).build().perform();
