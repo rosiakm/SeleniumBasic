@@ -86,6 +86,7 @@ public class FormPage extends BasePage {
         int startNbrOfFiles = countTheFiles();
         log.info("Starting number of files: " + startNbrOfFiles);
         downloadButton.click();
+        Thread.sleep(2000);
         int endNbrOfFiles = countTheFiles();
 
         assertThat(endNbrOfFiles).isEqualTo(startNbrOfFiles + 1);
