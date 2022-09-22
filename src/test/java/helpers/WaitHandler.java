@@ -19,12 +19,21 @@ public class WaitHandler {
         wait.until(ExpectedConditions.alertIsPresent());
     }
 
-    public static void waitForElementToBeSelected(WebElement element)
+    public static void waitForElementToBeClickable(WebElement element)
     {
         WebDriverWait wait = new WebDriverWait(getDriver(),Duration.ofSeconds(5));
         wait.withTimeout(Duration.ofSeconds(5))
                 .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(NoSuchElementException.class);
-        wait.until(ExpectedConditions.elementToBeSelected(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public static void waitForElementToBeVisible(WebElement element)
+    {
+        WebDriverWait wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
+        wait.withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 }

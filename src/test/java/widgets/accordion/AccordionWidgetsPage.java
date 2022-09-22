@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static helpers.WaitHandler.waitForElementToBeVisible;
+
 public class AccordionWidgetsPage extends BasePage {
     private static Logger log = LoggerFactory.getLogger(AccordionWidgetsPage.class);
 
@@ -33,7 +35,6 @@ public class AccordionWidgetsPage extends BasePage {
 
     public AccordionWidgetsPage() {
         super();
-        log.info("Elements on the website are initialized");
     }
 
     public void printOutTheTextFromSectionOne() {
@@ -49,19 +50,17 @@ public class AccordionWidgetsPage extends BasePage {
     public void printOutTheTextFromSectionThree() {
         sectionThree.click();
         System.out.println(sectionThreeMainText.getText());
+        waitForElementToBeVisible(sectionThreePoints.get(0));
         for (WebElement point : sectionThreePoints) {
-            if (point.isDisplayed()) {
-                System.out.println(point.getText());
-            }
+            System.out.println(point.getText());
         }
     }
 
     public void printOutTheTextFromSectionFour() {
         sectionFour.click();
+        waitForElementToBeVisible(sectionFourTexts.get(0));
         for (WebElement text : sectionFourTexts) {
-            if (text.isDisplayed()) {
-                System.out.println(text.getText());
-            }
+            System.out.println(text.getText());
         }
     }
 }

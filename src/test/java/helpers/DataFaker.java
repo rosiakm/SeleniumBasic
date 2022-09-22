@@ -14,4 +14,7 @@ public class DataFaker {
     public String setEmail(){
         return faker.internet().emailAddress();
     }
+    public String setPassword(){
+        return faker.internet().password();
+    }
 }

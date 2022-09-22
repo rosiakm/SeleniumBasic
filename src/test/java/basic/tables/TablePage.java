@@ -21,7 +21,6 @@ public class TablePage extends BasePage {
 
     public TablePage() {
         super();
-        log.info("Elements on the website are initialized");
     }
 
     public void selectSpecificData() {
@@ -34,9 +33,8 @@ public class TablePage extends BasePage {
         assertThat(tableRows.size()).isGreaterThan(0);
         for (WebElement tempRow : tableRows) {
             List<WebElement> cells = tempRow.findElements(By.cssSelector("th, td"));
-            log.info("List of cells within specific row has been built");
-            if (cells.get(stateIndex).getText().contains("Switzerland") && Integer.parseInt(cells.get(heightIndex).getText()) > 4000) {
-                System.out.println(cells.get(rankIndex).getText() + " " + cells.get(peakIndex).getText() + " " + cells.get(mountainRangeIndex).getText());
+            if (cells.get(3).getText().contains("Switzerland") && Integer.parseInt(cells.get(4).getText()) > 4000) {
+                System.out.println(cells.get(0).getText() + " " + cells.get(1).getText() + " " + cells.get(2).getText());
             }
         }
     }
