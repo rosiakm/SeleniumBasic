@@ -18,7 +18,7 @@ public class FormTest extends TestBase {
     private final DataFaker dataFaker = new DataFaker();
     private final File file = new File("src/main/resources/file.txt");
     private static Logger log = LoggerFactory.getLogger(FormTest.class);
-    private final String websiteAddress = "https://seleniumui.moderntester.pl/form.php";
+    private final String websiteAddress = "http://51.75.61.161:9102/form.php";
 
     @Test
     @Tag("Form")
@@ -26,7 +26,7 @@ public class FormTest extends TestBase {
     public void fillFormWithValidValuesTest() {
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        FormPage formPage = new FormPage();
+        FormPage formPage = new FormPage(getDriver());
         formPage.provideFirstName(dataFaker.setFirstName());
         formPage.provideLastName(dataFaker.setLastName());
         formPage.provideEmail(dataFaker.setEmail());
@@ -35,7 +35,7 @@ public class FormTest extends TestBase {
         formPage.selectRandomExperience();
         formPage.selectAutomationTesterCheckbox();
         formPage.selectRandomContinent();
-        formPage.selectCommandsOptions();
+        formPage.selectCommandsOptions(getDriver());
         formPage.sendFile(file);
         formPage.clickTheSignInButton();
         assertThat(formPage.getValidationMessage()).isEqualTo("Form send with success");
@@ -49,7 +49,7 @@ public class FormTest extends TestBase {
         log.info("Website address is: " + websiteAddress);
         int startNbrOfFiles = countTheFiles();
         log.info("Starting number of files: " + startNbrOfFiles);
-        new FormPage().clickOnDownloadButton();
+        new FormPage(getDriver()).clickOnDownloadButton();
         Thread.sleep(2000);
         int endNbrOfFiles = countTheFiles();
 

@@ -2,6 +2,7 @@ package basic.form;
 
 import base.BasePage;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +14,6 @@ import java.io.File;
 import java.util.List;
 import java.util.Random;
 
-import static base.TestBase.getDriver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FormPage extends BasePage {
@@ -51,8 +51,8 @@ public class FormPage extends BasePage {
     @FindBy(css = "a[class='btn btn-secondary btn-lg active']")
     private WebElement downloadButton;
 
-    public FormPage() {
-        super();
+    public FormPage(WebDriver driver) {
+        super(driver);
     }
 
     public void provideFirstName(String firstName) {
@@ -82,8 +82,8 @@ public class FormPage extends BasePage {
         assertThat(continentsOptions.size()).isGreaterThan(0);
         new Select(selectContinents).selectByIndex(random.nextInt(continentsOptions.size()));
     }
-    public void selectCommandsOptions() {
-        new Actions(TestBase.getDriver()).keyDown(Keys.CONTROL).click(switchCommandsOption).
+    public void selectCommandsOptions(WebDriver driver) {
+        new Actions(driver).keyDown(Keys.CONTROL).click(switchCommandsOption).
                 click(waitCommandsOption).build().perform();
     }
     public void sendFile(File file) {

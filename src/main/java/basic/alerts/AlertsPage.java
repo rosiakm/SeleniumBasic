@@ -1,6 +1,7 @@
 package basic.alerts;
 
 import base.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -30,8 +31,8 @@ public class AlertsPage extends BasePage {
     @FindBy(css = "#delayed-alert-label")
     private WebElement delayedAlertLabel;
 
-    public AlertsPage() {
-        super();
+    public AlertsPage(WebDriver driver) {
+        super(driver);
         log.info("Elements on the website are initialized");
     }
 

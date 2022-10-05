@@ -15,7 +15,7 @@ public class AlertsTest extends TestBase {
     public void simpleAlertPositiveTest() {
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new AlertsPage().clickAndAcceptSimpleAlert();
+        new AlertsPage(getDriver()).clickAndAcceptSimpleAlert();
     }
 
     @Test
@@ -23,7 +23,7 @@ public class AlertsTest extends TestBase {
     public void promptAlertPositiveTest() {
         getDriver().get(websiteAddress);
         log.info("My website address is " + websiteAddress);
-        new AlertsPage().clickFillAndAcceptPromptAlert();
+        new AlertsPage(getDriver()).clickFillAndAcceptPromptAlert();
     }
 
     @Test
@@ -31,7 +31,7 @@ public class AlertsTest extends TestBase {
     public void confirmAlertPositiveTest() {
         getDriver().get(websiteAddress);
         log.info("My website address is " + websiteAddress);
-        new AlertsPage().clickAndAcceptConfirmAlert();
+        new AlertsPage(getDriver()).clickAndAcceptConfirmAlert();
     }
 
     @Test
@@ -39,6 +39,6 @@ public class AlertsTest extends TestBase {
     public void delayedAlertPositiveTest() {
         getDriver().get(websiteAddress);
         log.info("My website address is " + websiteAddress);
-        new AlertsPage().clickAndAcceptDelayedAlert();
+        new AlertsPage(getDriver()).clickAndAcceptDelayedAlert();
     }
 }

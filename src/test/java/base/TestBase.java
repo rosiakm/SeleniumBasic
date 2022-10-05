@@ -15,10 +15,10 @@ import java.util.HashMap;
 public class TestBase {
     private static Logger log = LoggerFactory.getLogger(TestBase.class);
 
-    private static WebDriver driver;
+    private WebDriver driver;
     private static final String downloadDir = "C:\\Users\\matros\\IdeaProjects\\SeleniumBasic\\downloads";
 
-    public static WebDriver getDriver() {
+    public WebDriver getDriver() {
         return driver;
     }
 
