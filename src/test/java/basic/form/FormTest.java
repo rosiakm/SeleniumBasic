@@ -47,11 +47,11 @@ public class FormTest extends TestBase {
     public void downloadFilesTest() throws InterruptedException {
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        int startNbrOfFiles = countTheFiles();
+        int startNbrOfFiles = countTheFiles(getDownloadDir());
         log.info("Starting number of files: " + startNbrOfFiles);
         new FormPage(getDriver()).clickOnDownloadButton();
         Thread.sleep(2000);
-        int endNbrOfFiles = countTheFiles();
+        int endNbrOfFiles = countTheFiles(getDownloadDir());
 
         assertThat(endNbrOfFiles).isEqualTo(startNbrOfFiles + 1);
     }
@@ -61,6 +61,6 @@ public class FormTest extends TestBase {
     @Order(3)
     public void checkTheFileNameTest() {
         File fileName = new File("C:\\Users\\matros\\IdeaProjects\\SeleniumBasic\\downloads\\test-file-to-download.xlsx");
-        assertThat(getTheListOfFiles()).contains(fileName);
+        assertThat(getTheListOfFiles(getDownloadDir())).contains(fileName);
     }
 }

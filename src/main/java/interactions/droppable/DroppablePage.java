@@ -1,15 +1,14 @@
 package interactions.droppable;
 
 import base.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static base.TestBase.getDriver;
 import static helpers.WaitHandler.waitForElementToBeVisible;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class DroppablePage extends BasePage {
     private static Logger log = LoggerFactory.getLogger(DroppablePage.class);
@@ -21,15 +20,15 @@ public class DroppablePage extends BasePage {
     @FindBy(css = "#droppable p")
     private WebElement droppableElementLabel;
 
-    public DroppablePage(){
-        super();
+    public DroppablePage(WebDriver driver){
+        super(driver);
     }
-
-    public void dragAndDropElement(){
-        Actions actions = new Actions(TestBase.getDriver());
+    public void dragAndDropElement(WebDriver driver){
+        Actions actions = new Actions(driver);
         actions.dragAndDrop(draggableElement,droppableElement).perform();
-        waitForElementToBeVisible(droppableElementLabel);
-        Assertions.assertThat(droppableElementLabel.getText()).isEqualTo("Dropped!");
+        waitForElementToBeVisible(driver, droppableElementLabel);
     }
-
+    public String getDroppableElementLabel(){
+        return droppableElementLabel.getText();
+    }
 }

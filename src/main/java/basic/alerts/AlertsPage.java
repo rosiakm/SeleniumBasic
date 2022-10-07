@@ -7,10 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static base.TestBase.getDriver;
-import static helpers.WaitHandler.waitForAlertToBePresent;
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class AlertsPage extends BasePage {
     private static Logger log = LoggerFactory.getLogger(AlertsPage.class);
 
@@ -36,36 +32,52 @@ public class AlertsPage extends BasePage {
         log.info("Elements on the website are initialized");
     }
 
-    public void clickAndAcceptSimpleAlert() {
+    public void clickOnSimpleAlertButton(){
         simpleAlertButton.click();
         log.info("Button has been found");
-        TestBase.getDriver().switchTo().alert().accept();
-        log.info("Switched to alert");
-
-        Assertions.assertThat(simpleAlertLabel.getText()).isEqualTo("OK button pressed");
     }
 
-    public void clickFillAndAcceptPromptAlert() {
-        String name = "Lord Vader";
+    public void switchAndAcceptSimpleAlert(WebDriver driver){
+        driver.switchTo().alert().accept();
+        log.info("Switched to alert");
+    }
+
+    public String getSimpleAlertText(){
+        return simpleAlertLabel.getText();
+    }
+    public void clickOnPromptAlertButton(){
         promptAlertButton.click();
         log.info("Button has been clicked");
-        TestBase.getDriver().switchTo().alert().sendKeys(name);
-        TestBase.getDriver().switchTo().alert().accept();
-        Assertions.assertThat(promptAlertLabel.getText()).isEqualTo("Hello " + name + "! How are you today?");
     }
-
-    public void clickAndAcceptConfirmAlert(){
+    public String switchAndSendKeysToPromptAlert(WebDriver driver, String name){
+        driver.switchTo().alert().sendKeys(name);
+        return name;
+    }
+    public void switchToAndAcceptPromptAlert(WebDriver driver){
+        driver.switchTo().alert().accept();
+    }
+    public String getPromptAlertLabel(){
+        return promptAlertLabel.getText();
+    }
+    public void clickOnConfirmAlertButton(){
         confirmAlertButton.click();
         log.info("Button has been clicked");
-        TestBase.getDriver().switchTo().alert().accept();
-        Assertions.assertThat(confirmAlertLabel.getText()).isEqualTo("You pressed OK!");
     }
 
-    public void clickAndAcceptDelayedAlert(){
+    public void switchToAndAcceptConfirmAlert(WebDriver driver){
+        driver.switchTo().alert().accept();
+    }
+    public String getConfirmAlertLabel(){
+        return confirmAlertLabel.getText();
+    }
+    public void clickOnDelayedAlertButton(){
         delayedAlertButton.click();
         log.info("Button has been clicked");
-        WaitHandler.waitForAlertToBePresent();
-        TestBase.getDriver().switchTo().alert().accept();
-        Assertions.assertThat(delayedAlertLabel.getText()).isEqualTo("OK button pressed");
+    }
+    public void switchToAndAcceptDelayedAlert(WebDriver driver){
+        driver.switchTo().alert().accept();
+    }
+    public String getDelayedAlertLabel(){
+        return delayedAlertLabel.getText();
     }
 }

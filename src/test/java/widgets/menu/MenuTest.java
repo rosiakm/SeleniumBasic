@@ -16,6 +16,11 @@ public class MenuTest extends TestBase {
     public void getTheOptionFromMenuTest(){
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new MenuPage().getTheOptionFromMenu();
+        MenuPage menu = new MenuPage(getDriver());
+        menu.clickOnMusicOption();
+        menu.waitForJazzOptionToBeClickable(getDriver());
+        menu.clickOnJazzOption();
+        menu.waitForModernOptionToBeClickable(getDriver());
+        menu.clickOnModernOption();
     }
 }

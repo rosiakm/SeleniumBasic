@@ -1,6 +1,7 @@
 package widgets.selectMenu;
 
 import base.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -42,31 +43,52 @@ public class SelectMenuPage extends BasePage {
     @FindBy(css = "#salutation-button span[class='ui-selectmenu-text']")
     private WebElement selectedSalutationOption;
 
-    public SelectMenuPage() {
-        super();
+    public SelectMenuPage(WebDriver driver) {
+        super(driver);
     }
-
-    public void selectOptions() {
+    public void clickOnSpeedButton(){
         speedButton.click();
-        waitForElementToBeVisible(speedOptions.get(0));
-        Assertions.assertThat(speedOptions.size()).isGreaterThan(0);
+    }
+    public void waitForSpeedOptionsToBeVisible(WebDriver driver){
+        waitForElementToBeVisible(driver, speedOptions.get(0));
+    }
+    public void clickOnRandomOptionFromSpeedList(){
+        assertThat(speedOptions.size()).isGreaterThan(0);
         speedOptions.get(random.nextInt(speedOptions.size())).click();
         log.info("My random speed option is: " + selectedSpeedOption.getText());
+    }
+    public void clickOnFilesButton(){
         filesButton.click();
-        waitForElementToBeVisible(filesOptions.get(0));
-        Assertions.assertThat(filesOptions.size()).isGreaterThan(0);
+    }
+    public void waitForFilesOptionsToBeVisible(WebDriver driver){
+        waitForElementToBeVisible(driver, filesOptions.get(0));
+    }
+    public void clickOnOptionByText(String myOption){
+        assertThat(filesOptions.size()).isGreaterThan(0);
         for (WebElement option : filesOptions) {
-            clickOnOptionByText(option,"jQuery.js");
+            clickOnOptionByText(option,myOption);
         }
         log.info("Selected option is: " + selectedFilesOption.getText());
+    }
+    public void clickOnNumberButton(){
         numberButton.click();
-        waitForElementToBeVisible(numberOptions.get(0));
-        Assertions.assertThat(numberOptions.size()).isGreaterThan(0);
-        numberOptions.get(10).click();
+    }
+    public void waitForNumberOptionsToBeVisible(WebDriver driver){
+        waitForElementToBeVisible(driver, numberOptions.get(0));
+    }
+    public void clickOnNumberOptionByIndex(int index){
+        assertThat(numberOptions.size()).isGreaterThan(0);
+        numberOptions.get(index).click();
         log.info("Selected option is with index: " + selectedNumberOption.getText());
+    }
+    public void clickOnSalutationButton(){
         salutationButton.click();
-        waitForElementToBeVisible(salutationOptions.get(0));
-        Assertions.assertThat(salutationOptions.size()).isGreaterThan(0);
+    }
+    public void waitForSalutationOptionsToBeVisible(WebDriver driver){
+        waitForElementToBeVisible(driver, salutationOptions.get(0));
+    }
+    public void clickOnRandomSalutationOption(){
+        assertThat(salutationOptions.size()).isGreaterThan(0);
         salutationOptions.get(random.nextInt(salutationOptions.size())).click();
         log.info("My random salutation option is: " + selectedSalutationOption.getText());
     }

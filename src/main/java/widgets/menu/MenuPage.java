@@ -1,6 +1,7 @@
 package widgets.menu;
 
 import base.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -18,15 +19,23 @@ public class MenuPage extends BasePage {
     @FindBy(css = "#ui-id-16")
     private WebElement modernOption;
 
-    public MenuPage(){
-        super();
+    public MenuPage(WebDriver driver){
+        super(driver);
     }
 
-    public void getTheOptionFromMenu(){
+    public void clickOnMusicOption(){
         musicOption.click();
-        waitForElementToBeClickable(jazzOption);
+    }
+    public void waitForJazzOptionToBeClickable(WebDriver driver){
+        waitForElementToBeClickable(driver, jazzOption);
+    }
+    public void clickOnJazzOption(){
         jazzOption.click();
-        waitForElementToBeClickable(modernOption);
+    }
+    public void waitForModernOptionToBeClickable(WebDriver driver){
+        waitForElementToBeClickable(driver, modernOption);
+    }
+    public void clickOnModernOption(){
         modernOption.click();
     }
 }

@@ -1,6 +1,7 @@
 package widgets.accordion;
 
 import base.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -33,8 +34,8 @@ public class AccordionWidgetsPage extends BasePage {
     private List<WebElement> sectionFourTexts;
 
 
-    public AccordionWidgetsPage() {
-        super();
+    public AccordionWidgetsPage(WebDriver driver) {
+        super(driver);
     }
 
     public void printOutTheTextFromSectionOne() {
@@ -47,18 +48,18 @@ public class AccordionWidgetsPage extends BasePage {
         System.out.println(sectionTwoText.getText());
     }
 
-    public void printOutTheTextFromSectionThree() {
+    public void printOutTheTextFromSectionThree(WebDriver driver) {
         sectionThree.click();
         System.out.println(sectionThreeMainText.getText());
-        waitForElementToBeVisible(sectionThreePoints.get(0));
+        waitForElementToBeVisible(driver, sectionThreePoints.get(0));
         for (WebElement point : sectionThreePoints) {
             System.out.println(point.getText());
         }
     }
 
-    public void printOutTheTextFromSectionFour() {
+    public void printOutTheTextFromSectionFour(WebDriver driver) {
         sectionFour.click();
-        waitForElementToBeVisible(sectionFourTexts.get(0));
+        waitForElementToBeVisible(driver, sectionFourTexts.get(0));
         for (WebElement text : sectionFourTexts) {
             System.out.println(text.getText());
         }

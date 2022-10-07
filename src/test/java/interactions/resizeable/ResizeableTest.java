@@ -15,6 +15,9 @@ public class ResizeableTest extends TestBase {
     public void resizeElementTest(){
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new ResizeablePage().resizeElement();
+        ResizeablePage resizeable = new ResizeablePage(getDriver());
+        resizeable.resizeElementInXAxis(getDriver());
+        resizeable.resizeElementInYAxis(getDriver());
+        resizeable.resizeElementInBothAxis(getDriver());
     }
 }

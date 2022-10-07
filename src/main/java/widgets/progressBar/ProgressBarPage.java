@@ -1,13 +1,13 @@
 package widgets.progressBar;
 
 import base.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static helpers.WaitHandler.waitForElementToBeVisible;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProgressBarPage extends BasePage {
     private static Logger log = LoggerFactory.getLogger(ProgressBarPage.class);
@@ -15,13 +15,14 @@ public class ProgressBarPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Complete')]")
     private WebElement completeLabel;
 
-    public ProgressBarPage(){
-        super();
+    public ProgressBarPage(WebDriver driver){
+        super(driver);
     }
 
-    public void waitForProgressBarToComplete(){
-        waitForElementToBeVisible(completeLabel);
-
-        Assertions.assertThat(completeLabel.getText()).isEqualTo("Complete!");
+    public void waitForProgressBarToComplete(WebDriver driver){
+        waitForElementToBeVisible(driver, completeLabel);
+    }
+    public String getCompleteLabelText(){
+        return completeLabel.getText();
     }
 }

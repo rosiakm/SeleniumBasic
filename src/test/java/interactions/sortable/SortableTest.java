@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 public class SortableTest extends TestBase {
     private static Logger log = LoggerFactory.getLogger(SortableTest.class);
     private final String websiteAddress = "https://seleniumui.moderntester.pl/sortable.php";
@@ -17,6 +15,6 @@ public class SortableTest extends TestBase {
     public void sortItemsTest() {
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new SortablePage().shuffleAndSortItems();
+        new SortablePage(getDriver()).shuffleAndSortItems(getDriver());
     }
 }

@@ -1,15 +1,14 @@
 package widgets.tooltip;
 
 import base.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static base.TestBase.getDriver;
 import static helpers.WaitHandler.waitForElementToBeVisible;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class TooltipPage extends BasePage {
     private static Logger log = LoggerFactory.getLogger(TooltipPage.class);
@@ -19,17 +18,22 @@ public class TooltipPage extends BasePage {
     @FindBy(css = "div[role='tooltip'] div")
     private WebElement tooltipContent;
 
-    public TooltipPage(){
-        super();
+    public TooltipPage(WebDriver driver){
+        super(driver);
     }
 
-    public void printTheTextFromTooltip(){
-        Actions action = new Actions(TestBase.getDriver());
+    public void hoverOverInput(WebDriver driver){
+        Actions action = new Actions(driver);
         action.moveToElement(input).perform();
         log.info("Hovering over element");
-        waitForElementToBeVisible(tooltipContent);
+    }
+    public void waitForTooltipToBeVisible(WebDriver driver){
+        waitForElementToBeVisible(driver, tooltipContent);
+    }
+    public void printTheTooltipContent(){
         System.out.println(tooltipContent.getText());
-
-        Assertions.assertThat(tooltipContent.getText()).isEqualTo("We ask for your age only for statistical purposes.");
+    }
+    public String getTooltipContent(){
+        return tooltipContent.getText();
     }
 }

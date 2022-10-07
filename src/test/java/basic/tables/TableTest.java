@@ -15,6 +15,6 @@ public class TableTest extends TestBase {
     public void printOutSpecificDataFromTableTest(){
         getDriver().get(websiteAddress);
         log.info("Website address is " + websiteAddress);
-        new TablePage().selectSpecificData();
+        new TablePage(getDriver()).selectSpecificData();
     }
 }

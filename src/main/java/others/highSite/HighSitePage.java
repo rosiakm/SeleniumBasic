@@ -1,6 +1,7 @@
 package others.highSite;
 
 import base.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Date;
 
-import static base.TestBase.getDriver;
 import static helpers.TakeScreenshot.takeScreenshot;
 import static helpers.WaitHandler.waitForElementToBeVisible;
 
@@ -22,16 +22,24 @@ public class HighSitePage extends BasePage {
     @FindBy(css = "#scroll-button")
     private WebElement submitButton;
 
-    public HighSitePage(){
-        super();
+    public HighSitePage(WebDriver driver) {
+        super(driver);
     }
-    public void scrollDownUntilSubmitButtonDisplays() throws IOException {
-        Actions action = new Actions(TestBase.getDriver());
+
+    public void scrollToSpecificElement(WebDriver driver) {
+        Actions action = new Actions(driver);
         action.scrollToElement(submitButtonParagraph).perform();
         log.info("Scroll to element");
-        action.scrollByAmount(0,200).perform();
+    }
+
+    public void scrollBySpecificAmount(WebDriver driver, int x, int y) {
+        Actions action = new Actions(driver);
+        action.scrollByAmount(x, y).perform();
         log.info("Scroll 200 pixels below to make the element visible in html structure");
-        waitForElementToBeVisible(submitButton);
-        takeScreenshot(TestBase.getDriver(),"src/main/resources/screenshot" + new Date().getTime() +".png");
+        waitForElementToBeVisible(driver, submitButton);
+    }
+
+    public void takeScreenshotOfElement(WebDriver driver) throws IOException {
+        takeScreenshot(driver, "src/main/resources/screenshot" + new Date().getTime() + ".png");
     }
 }

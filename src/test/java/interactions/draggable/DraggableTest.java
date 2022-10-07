@@ -15,6 +15,14 @@ public class DraggableTest extends TestBase {
     public void dragElementTest(){
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new DraggablePage().dragSquareToRightPlaces();
+        DraggablePage draggable = new DraggablePage(getDriver());
+        draggable.getCurrentLocation();
+        draggable.getDraggableElementSize();
+        draggable.getScreenSize();
+        draggable.dragAndDropElementInRightTopCorner(getDriver());
+        draggable.getNewLocation();
+        draggable.dragAndDropElementInRightDownCorner(getDriver());
+        draggable.dragAndDropElementInTheCenter(getDriver());
+        draggable.dragAndDropElementInLefDownCorner(getDriver());
     }
 }

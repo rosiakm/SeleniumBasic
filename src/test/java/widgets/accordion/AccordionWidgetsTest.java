@@ -16,27 +16,27 @@ public class AccordionWidgetsTest extends TestBase {
     public void printTheTextFromSectionOneTest(){
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new AccordionWidgetsPage().printOutTheTextFromSectionOne();
+        new AccordionWidgetsPage(getDriver()).printOutTheTextFromSectionOne();
     }
     @Test
     @Tag("Widget")
     public void printTheTextFromSectionTwoTest(){
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new AccordionWidgetsPage().printOutTheTextFromSectionTwo();
+        new AccordionWidgetsPage(getDriver()).printOutTheTextFromSectionTwo();
     }
     @Test
     @Tag("Widget")
     public void printTheTextFromSectionThreeTest(){
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new AccordionWidgetsPage().printOutTheTextFromSectionThree();
+        new AccordionWidgetsPage(getDriver()).printOutTheTextFromSectionThree(getDriver());
     }
     @Test
     @Tag("Widget")
     public void printTheTextFromSectionFourTest(){
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new AccordionWidgetsPage().printOutTheTextFromSectionFour();
+        new AccordionWidgetsPage(getDriver()).printOutTheTextFromSectionFour(getDriver());
     }
 }

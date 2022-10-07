@@ -18,6 +18,9 @@ public class HighSiteTest extends TestBase {
     public void scrollDownTest() throws IOException {
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new HighSitePage().scrollDownUntilSubmitButtonDisplays();
+        HighSitePage highSite = new HighSitePage(getDriver());
+        highSite.scrollToSpecificElement(getDriver());
+        highSite.scrollBySpecificAmount(getDriver(),0,200);
+        highSite.takeScreenshotOfElement(getDriver());
     }
 }

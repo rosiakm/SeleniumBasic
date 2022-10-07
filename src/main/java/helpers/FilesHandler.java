@@ -4,15 +4,13 @@ import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
-import static base.TestBase.getDownloadDir;
-
 public class FilesHandler {
 
-    public static int countTheFiles(){
-        return Objects.requireNonNull(new File(TestBase.getDownloadDir()).list()).length;
+    public static int countTheFiles(String downloadDir){
+        return Objects.requireNonNull(new File(downloadDir).list()).length;
     }
 
-    public static List<File> getTheListOfFiles(){
-        return List.of(Objects.requireNonNull(new File(TestBase.getDownloadDir()).listFiles()));
+    public static List<File> getTheListOfFiles(String downloadDir){
+        return List.of(Objects.requireNonNull(new File(downloadDir).listFiles()));
     }
 }

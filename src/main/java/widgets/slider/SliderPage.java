@@ -2,6 +2,7 @@ package widgets.slider;
 
 import base.BasePage;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -15,8 +16,8 @@ public class SliderPage extends BasePage {
     @FindBy(css = "#custom-handle")
     private WebElement sliderHandle;
 
-    public SliderPage(){
-        super();
+    public SliderPage(WebDriver driver){
+        super(driver);
     }
 
     public void moveSliderToSpecificLocations(){
@@ -25,18 +26,18 @@ public class SliderPage extends BasePage {
         for (int i = startPoint; i < 50-startPoint; i++){
             sliderHandle.sendKeys(Keys.ARROW_RIGHT);
         }
-        Assertions.assertThat(sliderHandle.getText()).isEqualTo("50");
+        assertThat(sliderHandle.getText()).isEqualTo("50");
         for (int i = 50; i < 80; i++){
             sliderHandle.sendKeys(Keys.ARROW_RIGHT);
         }
-        Assertions.assertThat(sliderHandle.getText()).isEqualTo("80");
+        assertThat(sliderHandle.getText()).isEqualTo("80");
         for (int i = 80; i > 20; i--){
             sliderHandle.sendKeys(Keys.ARROW_LEFT);
         }
-        Assertions.assertThat(sliderHandle.getText()).isEqualTo("20");
+        assertThat(sliderHandle.getText()).isEqualTo("20");
         for (int i = 20; i > 0; i--){
             sliderHandle.sendKeys(Keys.ARROW_LEFT);
         }
-        Assertions.assertThat(sliderHandle.getText()).isEqualTo("0");
+        assertThat(sliderHandle.getText()).isEqualTo("0");
     }
 }

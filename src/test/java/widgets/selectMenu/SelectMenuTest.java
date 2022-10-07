@@ -16,6 +16,18 @@ public class SelectMenuTest extends TestBase {
     public void selectOptionsTest(){
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new SelectMenuPage().selectOptions();
+        SelectMenuPage selectMenu = new SelectMenuPage(getDriver());
+        selectMenu.clickOnSpeedButton();
+        selectMenu.waitForSpeedOptionsToBeVisible(getDriver());
+        selectMenu.clickOnRandomOptionFromSpeedList();
+        selectMenu.clickOnFilesButton();
+        selectMenu.waitForFilesOptionsToBeVisible(getDriver());
+        selectMenu.clickOnOptionByText("jQuery.js");
+        selectMenu.clickOnNumberButton();
+        selectMenu.waitForNumberOptionsToBeVisible(getDriver());
+        selectMenu.clickOnNumberOptionByIndex(10);
+        selectMenu.clickOnSalutationButton();
+        selectMenu.waitForSalutationOptionsToBeVisible(getDriver());
+        selectMenu.clickOnRandomSalutationOption();
     }
 }

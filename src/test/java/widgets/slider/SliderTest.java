@@ -15,6 +15,6 @@ public class SliderTest extends TestBase {
     public void moveTheSliderTest() {
         getDriver().get(websiteAddress);
         log.info("Website address is: " + websiteAddress);
-        new SliderPage().moveSliderToSpecificLocations();
+        new SliderPage(getDriver()).moveSliderToSpecificLocations();
     }
 }
